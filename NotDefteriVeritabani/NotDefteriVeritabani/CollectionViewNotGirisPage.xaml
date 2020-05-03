@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NotDefteriVeritabani.CollectionViewNotGirisPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:Name="notGirisStackLayout" 
+                         Margin="10,35,10,10"
+                         Orientation="Vertical">
+                <Label Text="Notlarım"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold" />
+                <Editor x:Name="notGirisi"
+                        Text="{Binding NotMetin}"
+                        Placeholder="Notunuzu giriniz."
+                        HeightRequest="100" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="kaydetButton"
+                            Grid.Row="0"  
+                            Grid.Column="0"
+                            Clicked="kaydetButton_Clicked"
+                            Text="KAYDET"/>
+                    <Button Grid.Row="0" x:Name="silButton"
+                    Clicked="silButton_Clicked"
+                    
+                            Grid.Column="1"
+                            Text="SİL" />
+                </Grid>
+            </StackLayout>
+            
+            <RefreshView x:Name="yenileRW" Refreshing="RefreshView_Refreshing">
+            
+                <CollectionView x:Name="notListeCollectionView" 
+                                SelectionMode="None"                                
+                                SelectionChanged="notListeCollectionView_SelectionChanged"
+                                >
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Span="2" Orientation="Vertical" 
+                                         HorizontalItemSpacing="10"
+                                         VerticalItemSpacing="10"
+                                         />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+                            
+                            <SwipeView x:Name="kaydirmaSW" >
+
+                                <SwipeView.LeftItems>
+                                    <SwipeItems  >
+                                        <SwipeItem Text="Güncelle" BackgroundColor="Yellow" 
+                                                   Invoked="GuncelleSwipeItem_Invoked"
+                                                   />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+
+                                <SwipeView.RightItems>
+                                    <SwipeItems Mode="Execute" >
+                                        <SwipeItem Text="Sil" BackgroundColor="Red" 
+                                                   Invoked="SilSwipeItem_Invoked"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <SwipeView.Content>
+                                   
+                                    <!--
+                                    <Grid BackgroundColor="White" RowSpacing="10" Padding="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                    -->
+                            <StackLayout Orientation="Vertical">
+                                        <Label Grid.Row="0" Text="{Binding NotMetin}" />
+                                        <Label Grid.Row="1" Text="{Binding NotTarih}" />
+                            </StackLayout>
+                            <!--
+                                    </Grid>
+                                    -->
+                            
+                                </SwipeView.Content>
+                            </SwipeView>
+                            
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            
+            </RefreshView>
+            
+        </StackLayout>
+
+       
+        </ContentPage.Content>
+</ContentPage>

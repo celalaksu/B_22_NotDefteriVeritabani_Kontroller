@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NotDefteriVeritabani.Page1">
+    <ContentPage.Content>
+        <RefreshView x:Name="yenileRW" Refreshing="RefreshView_Refreshing">
+
+            <CollectionView x:Name="notListeCollectionView" 
+                                SelectionMode="None"                                
+                                SelectionChanged="notListeCollectionView_SelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Span="2" Orientation="Vertical" 
+                                         HorizontalItemSpacing="10"
+                                         VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <SwipeView x:Name="kaydirmaSW" >
+                            <SwipeView.LeftItems>
+                                <SwipeItems  >
+                                    <SwipeItem Text="Güncelle" BackgroundColor="Yellow" 
+                                                   Invoked="GuncelleSwipeItem_Invoked" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Execute" >
+                                    <SwipeItem Text="Sil" BackgroundColor="Red" 
+                                                   Invoked="SilSwipeItem_Invoked"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <SwipeView.Content>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Grid.Row="0" Text="{Binding NotMetin}" />
+                                    <Label Grid.Row="1" Text="{Binding NotTarih}" />
+                                </StackLayout>
+                            </SwipeView.Content>
+                        </SwipeView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

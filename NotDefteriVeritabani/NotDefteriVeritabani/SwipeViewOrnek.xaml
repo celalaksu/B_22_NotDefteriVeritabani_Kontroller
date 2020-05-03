@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NotDefteriVeritabani.SwipeViewOrnek">
+    
+    <SwipeView VerticalOptions="CenterAndExpand">
+        <SwipeView.LeftItems >
+            <SwipeItems Mode="Execute">
+                <SwipeItem Text="Favori"
+                       IconImageSource="favorite.png"
+                       BackgroundColor="LightGreen"
+                       Invoked="FavoriSwipeItem_Invoked" 
+                        />
+                <SwipeItem Text="Sil"
+                       IconImageSource="delete.png"
+                       BackgroundColor="LightPink"
+                       Invoked="SilSwipeItem_Invoked"                           
+                           />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <!-- Content -->
+        <Grid HeightRequest="60" WidthRequest="300" BackgroundColor="LightGray">
+            <Label x:Name="etiketLbl" Text="Sağa Kaydırın"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        </Grid>
+    </SwipeView>
+</ContentPage>

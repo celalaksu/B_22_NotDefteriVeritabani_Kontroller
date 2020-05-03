@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NotDefteriVeritabani.IkiNotGirisPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="MessageTemplate">
+                <ViewCell>
+
+                    <SwipeView x:Name="kaydirmaSW" HeightRequest="80" >
+                        <SwipeView.LeftItems>
+                            <SwipeItems  >
+                                <SwipeItem Text="Güncelle" BackgroundColor="Yellow" 
+                                                   Invoked="GuncelleSwipeItem_Invoked"/>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Execute" >
+                                <SwipeItem Text="Sil" BackgroundColor="Red" 
+                                                   Invoked="SilSwipeItem_Invoked"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <SwipeView.Content>
+
+                            <Grid BackgroundColor="White" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0" Text="{Binding NotMetin}" />
+                                <Label Grid.Row="1" Text="{Binding NotTarih}" />
+                            </Grid>
+                        </SwipeView.Content>
+                    </SwipeView>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout x:Name="notGirisStackLayout" 
+                         Margin="10,35,10,10"
+                         Orientation="Vertical">
+        <Label Text="Notlarım"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold" />
+        <Editor x:Name="notGirisi"
+                        Text="{Binding NotMetin}"
+                        Placeholder="Notunuzu giriniz."
+                        HeightRequest="100" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="kaydetButton"
+                            Grid.Row="0"  
+                            Grid.Column="0"
+                            Clicked="kaydetButton_Clicked"
+                            Text="KAYDET"/>
+            <Button Grid.Row="0" x:Name="silButton"
+                    Clicked="silButton_Clicked"
+                    
+                            Grid.Column="1"
+                            Text="SİL" />
+        </Grid>
+
+
+        <RefreshView x:Name="yenileRW" Refreshing="RefreshView_Refreshing">
+            <ScrollView >
+                <Grid>
+                    <ListView x:Name="notlarListView" 
+                              ItemTemplate="{StaticResource MessageTemplate}"
+                              CachingStrategy="RecycleElement"
+                              HasUnevenRows="True"
+                              SeparatorVisibility="None">
+                    
+                </ListView>
+                </Grid>
+            </ScrollView>
+        </RefreshView>
+
+    </StackLayout>
+</ContentPage>
+
